@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60" debug="true">
+    <property name="LOG_HOME" value="/webapp/log" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+　  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    　<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 　　　　　
+    　　  <fileNamePattern>${LOG_HOME}/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+    　　　　　　<maxHistory>30</maxHistory>
+    　</rollingPolicy>
+    　　　<encoder>
+    　　　　　　<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    　　　</encoder>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+        <MaxFileSize>5MB</MaxFileSize>
+    </triggeringPolicy>
+    　</appender>
+
+
+　    <root level="DEBUG">
+    　　　　　<appender-ref ref="FILE" />
+    　</root>
+</configuration>
